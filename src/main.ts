@@ -39,7 +39,7 @@ export async function run(): Promise<void> {
         {
           activityTitle: release.data.body,
           activityImage: release.data.author.avatar_url,
-          activitySubtitle: `by ${release.data.author.login} [(@${release.data.author.login})](${release.data.author.html_url}) on ${timestamp}`
+          activitySubtitle: `by [@${release.data.author.login}](${release.data.author.html_url}) on ${timestamp}`
         }
       ],
       potentialAction: [
