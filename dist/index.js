@@ -66,18 +66,20 @@ function run() {
             const repoUrl = `https://github.com/${repoName}`;
             const octokit = new rest_1.Octokit({ auth: `token ${githubToken}` });
             const release = yield octokit.repos.getReleaseByTag({ owner, repo, tag });
-            const summary = `New release of ${repoName}: ${tag}`;
+            const summary = core.getInput('ms-teams-card-summary') ||
+                `New release of ${repoName}: ${tag}`;
+            const title = core.getInput('ms-teams-card-summary') || summary;
             const messageCard = {
                 '@type': 'MessageCard',
                 '@context': 'https://schema.org/extensions',
                 summary,
                 themeColor: notificationColor,
-                title: summary,
+                title,
                 sections: [
                     {
                         activityTitle: release.data.body,
                         activityImage: release.data.author.avatar_url,
-                        activitySubtitle: `by ${release.data.author.login} [(@${release.data.author.login})](${release.data.author.html_url}) on ${timestamp}`
+                        activitySubtitle: `by [@${release.data.author.login}](${release.data.author.html_url}) on ${timestamp}`
                     }
                 ],
                 potentialAction: [
