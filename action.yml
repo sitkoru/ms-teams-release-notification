@@ -2,10 +2,18 @@ name: 'Your name here'
 description: 'Provide a description here'
 author: 'Your name or organization here'
 inputs:
-  milliseconds: # change this
+  github-token:
+    description: 'GitHub Token'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  ms-teams-webhook-uri:
+    description: 'Microsoft Teams Webhook URI'
+    required: true
+  notification-color:
+    description: 'Color of notification header line'
+    required: true
+  timezone:
+    description: 'Timezone (ex. America/Denver)'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
