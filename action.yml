@@ -8,9 +8,15 @@ inputs:
   ms-teams-webhook-uri:
     description: 'Microsoft Teams Webhook URI'
     required: true
+  ms-teams-card-summary:
+    description: 'Summary for Teams card'
+    required: false
+  ms-teams-card-title:
+    description: 'Title for Teams card'
+    required: false
   notification-color:
     description: 'Color of notification header line'
-    required: true
+    required: false
   timezone:
     description: 'Timezone (ex. America/Denver)'
     required: false

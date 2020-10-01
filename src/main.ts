@@ -27,14 +27,17 @@ export async function run(): Promise<void> {
 
     const octokit = new Octokit({auth: `token ${githubToken}`})
     const release = await octokit.repos.getReleaseByTag({owner, repo, tag})
-    const summary = `New release of ${repoName}: ${tag}`
+    const summary =
+      core.getInput('ms-teams-card-summary') ||
+      `New release of ${repoName}: ${tag}`
+    const title = core.getInput('ms-teams-card-summary') || summary
 
     const messageCard = {
       '@type': 'MessageCard',
       '@context': 'https://schema.org/extensions',
       summary,
       themeColor: notificationColor,
-      title: summary,
+      title,
       sections: [
         {
           activityTitle: release.data.body,
